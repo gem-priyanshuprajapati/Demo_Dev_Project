@@ -91,7 +91,7 @@ test {
 //        includeTestsMatching "*Assignments.GoogleAssignment"
 
         //Cucumber tests
-        includeTestsMatching "*.CucumberRunner"                   //Set to your Cucumber Runner directory/Package
+        includeTestsMatching "*.testRunner"                   //Set to your Cucumber Runner directory/Package
         //RestAssured Tests
 //        includeTestsMatching "*.RestRunner.*"               //Set to your Rest Runner TDD directory/Package
 
