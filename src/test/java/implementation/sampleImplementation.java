@@ -6,6 +6,7 @@ public class sampleImplementation extends PageObject {
     public static void printMsg(){
     
         System.out.println("Hello world");
+
         
     }
 
