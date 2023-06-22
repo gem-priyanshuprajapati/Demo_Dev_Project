@@ -1,5 +1,6 @@
 Feature: sample
 
-  @reg
+  @test1
   Scenario: sample test
-    When user print the message
+    When User launches the website
+    Then user verify heading of the website

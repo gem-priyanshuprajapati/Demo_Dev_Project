@@ -2,3 +2,6 @@
 .idea/
 gradlew.bat/
 build
+target/
+Report/
+.gradle
