@@ -1,1 +1,1 @@
-# Automation jar creaion and deployments
+# Automation jar creaion and deployment
