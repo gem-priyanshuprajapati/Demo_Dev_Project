@@ -17,9 +17,10 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'net.serenity-bdd.aggregator'
 apply plugin: 'application'
+apply plugin: 'maven-publish'
 
-group 'org.orangehrmdemo'                       //set according to your group name
-version '1.0-SNAPSHOT'
+group 'org.customJar'                       //set according to your group name
+version '1.0.1'
 
 repositories {
     mavenCentral()
@@ -56,47 +57,48 @@ dependencies {
 
 }
 
-jar {
-    enabled = true
-    zip64(true)
-    configurations.testImplementation.setCanBeResolved(true)
-    manifest {
-        attributes 'Main-Class': "pageobjectgenerator.CodeGeneratorRunner",
-                'Class-Path':configurations.testImplementation.collect{it.getName()}.join(' ')
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//jar {
+//    enabled = true
+//    zip64(true)
+//    configurations.testImplementation.setCanBeResolved(true)
+//    manifest {
+//        attributes 'Main-Class': "runner.testRunner",
+//                'Class-Path':configurations.testImplementation.collect{it.getName()}.join(' ')
+//        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    }
+//    from{
+//        configurations.runtimeClasspath.collect{
+//            it.isDirectory()? it : zipTree(it)
+//        }
+//    }
+//    from{
+//        configurations.runtimeClasspath.collect{
+//            it.isDirectory()? it : zipTree(it)
+//        }
+//    }
+//    exclude "META-INF/*.SF"
+//    exclude "META-INF/*.DSA"
+//    exclude "META-INF/*.RSA"
+//    from sourceSets.main.output
+//    from sourceSets.test.output
+//    from ('src/test/resources'){
+//        include '**/*.feature'
+//    }
+//}
+publishing {
+    repositories {
+        mavenLocal()
     }
-    from{
-        configurations.runtimeClasspath.collect{
-            it.isDirectory()? it : zipTree(it)
+    publications {
+        maven(MavenPublication) {
+            from components.java
         }
-    }
-    from{
-        configurations.runtimeClasspath.collect{
-            it.isDirectory()? it : zipTree(it)
-        }
-    }
-    exclude "META-INF/*.SF"
-    exclude "META-INF/*.DSA"
-    exclude "META-INF/*.RSA"
-    from sourceSets.main.output
-    from sourceSets.test.output
-    from ('src/test/resources'){
-        include '**/*.feature'
     }
 }
-
 test {
     filter {
-        //include specific method in any of the tests
-//        includeTestsMatching "*Assignments.GoogleAssignment"
 
-        //Cucumber tests
         includeTestsMatching "*.testRunner"                   //Set to your Cucumber Runner directory/Package
-        //RestAssured Tests
-//        includeTestsMatching "*.RestRunner.*"               //Set to your Rest Runner TDD directory/Package
-
-        //RestAssured Tests
-//        includeTestsMatching "*.RestAssuredRunner"               //Set to your Rest Runner BDD directory/Package
     }
 //    testLogging.showStandardStreams = true
     systemProperties System.getProperties()
