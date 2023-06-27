@@ -13,6 +13,9 @@ buildscript {
         classpath('net.serenity-bdd:serenity-gradle-plugin:' + serenityVersion)
     }
 }
+plugins {
+    id "nebula.release" version "17.2.2"
+}
 defaultTasks 'clean','test','aggregate'
 
 apply plugin: 'java'
@@ -20,10 +23,11 @@ apply plugin: 'idea'
 apply plugin: 'net.serenity-bdd.aggregator'
 apply plugin: 'application'
 apply plugin: 'maven-publish'
+apply plugin: "nebula.release"
 
 
 group 'org.customJar'                       //set according to your group name
-version '1.0.5'
+version '2.0.6'
 
 repositories {
     mavenCentral()
@@ -43,6 +47,7 @@ ext {
 }
 
 dependencies {
+
     testImplementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
             "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
             "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
@@ -59,10 +64,7 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-java:6.10.4'
     testImplementation 'io.cucumber:cucumber-junit:6.10.4'
 }
-/*cucumber {
-    tags = System.getProperty('cucumber.filter.tags', '')
-    features = System.getProperty('cucumber.features', '')
-}*/
+
 jar {
     enabled = true
     zip64(true)
@@ -97,6 +99,9 @@ publishing {
     }
     publications {
         maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'my-library'
+            version = project.version
             from components.java
         }
     }
