@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/"
-        ,glue = "stepdefinition"
+        features = "src/test/resources/feature"
+        ,glue = "org.stepdefinition"
       )
 public class testRunner {
 }
