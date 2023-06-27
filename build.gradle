@@ -25,7 +25,6 @@ apply plugin: 'application'
 apply plugin: 'maven-publish'
 apply plugin: "nebula.release"
 
-
 group 'org.customJar'                       //set according to your group name
 version '2.0.6'
 
