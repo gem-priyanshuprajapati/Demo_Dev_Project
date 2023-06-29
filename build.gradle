@@ -24,7 +24,7 @@ apply plugin: 'maven-publish'
 apply plugin: "nebula.release"
 
 group 'org.customJar'                       //set according to your group name
-version '1.0.3'
+version '1.0.4'
 
 repositories {
     mavenCentral()
